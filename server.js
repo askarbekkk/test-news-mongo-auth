@@ -5,7 +5,6 @@ const mongoose = require("mongoose")
 const chalk = require("chalk")
 require("dotenv").config()
 const authRouter = require("./routes/auth")
-const {connect} = require("mongoose");
 
 const server = express()
 

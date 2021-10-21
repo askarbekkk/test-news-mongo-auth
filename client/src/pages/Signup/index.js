@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+import axios from "axios";
+import {ToastContainer, toast} from "react-toastify";
 import Layout from "../../components/Layout";
-import {Link} from "react-router-dom";
+
 
 const Signup = () => {
     const [values, setValues] = useState({
@@ -11,15 +13,27 @@ const Signup = () => {
 
     const handleChange = (e) => {
         setValues({...values,[e.target.name] : e.target.value})
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        axios({
+            method: "POST",
+            url: "http://localhost:8000/api/v1/signup",
+            data: values
+        }).then(({data}) => {
+            setValues({name:"", email:"", password:""})
+            toast.success(data.message)
+        }).catch((error) =>{
+            setValues({name:"", email:"", password:""})
+            toast.error(error.response.data.error)
+        })
     }
 
     return (
         <Layout>
+            <ToastContainer />
             <div className="font-sans">
                 <div className="relative  flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">
@@ -33,15 +47,15 @@ const Signup = () => {
                             </label>
                             <form method="#" action="#" className="mt-10" onSubmit={handleSubmit}>
                                 <div>
-                                    <input type="text" placeholder="Add name" onChange={handleChange} name='name' required
+                                    <input type="text" placeholder="Add name" onChange={handleChange} name='name' required value={values.name}
                                            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"/>
                                 </div>
                                 <div  className="mt-7">
-                                    <input type="email" placeholder="Add email" onChange={handleChange} name='email' required
+                                    <input type="email" placeholder="Add email" onChange={handleChange} name='email' required value={values.email}
                                            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"/>
                                 </div>
                                 <div className="mt-7">
-                                    <input type="password" placeholder="Add password" onChange={handleChange} name='password' required
+                                    <input type="password" placeholder="Add password" onChange={handleChange} name='password' required value={values.password}
                                            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"/>
                                 </div>
                                 <div className="mt-7">

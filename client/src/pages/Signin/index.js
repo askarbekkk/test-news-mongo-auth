@@ -1,10 +1,38 @@
-import React from 'react';
-import Layout from "../../components/Layout";
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {toast, ToastContainer} from "react-toastify";
+import Layout from "../../components/Layout";
+
+
 
 const Signin = () => {
+    const [values, setValues] = useState({
+        email:"",
+        password:""
+    })
+
+    const handleChange = (e) => {
+        setValues({...values,[e.target.name] : e.target.value})
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios({
+            method: "POST",
+            url: "http://localhost:8000/api/v1/signin",
+            data: values
+        }).then(({data}) => {
+            setValues({email:"", password:""})
+            toast.success(data?.message)
+        }).catch((error) =>{
+            setValues({email:"", password:""})
+            toast.error(error.response?.data.error)
+        })
+    }
     return (
         <Layout>
+            <ToastContainer />
             <div className="font-sans">
                 <div className="relative  flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">
@@ -16,15 +44,15 @@ const Signin = () => {
                             <label htmlFor="" className="block mt-3 text-sm text-gray-700 text-center font-semibold">
                                 Login
                             </label>
-                            <form method="#" action="#" className="mt-10">
+                            <form method="#" action="#" className="mt-10" onSubmit={handleSubmit}>
 
                                 <div>
-                                    <input type="email" placeholder="Add email"
+                                    <input type="email" placeholder="Add email" onChange={handleChange} name='email' required value={values.email}
                                            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"/>
                                 </div>
 
                                 <div className="mt-7">
-                                    <input type="password" placeholder="Add password"
+                                    <input type="password" placeholder="Add password" onChange={handleChange} name='password' required value={values.password}
                                            className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 p-4"/>
                                 </div>
 

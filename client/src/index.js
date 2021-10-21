@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './assets/styles/main.css'
+import 'react-toastify/dist/ReactToastify.css';
 import Routes from "./Routes";
 
 ReactDOM.render(
