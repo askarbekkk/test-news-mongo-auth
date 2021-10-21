@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const chalk = require("chalk")
 require("dotenv").config()
 const authRouter = require("./routes/auth")
+const path = require("path");
 
 const server = express()
 
@@ -12,11 +13,17 @@ server.use(cors())
 server.use(express.json())
 server.use(morgan())
 
+server.use(express.static(path.join(__dirname, "./client/build")))
+
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log(chalk.cyan("DB connected")))
     .catch(() => console.log(chalk.red("DB not connected")))
 
 server.use("/api/v1", authRouter)
+
+server.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "client/build/index.html"))
+})
 
 server.listen(process.env.PORT, () =>{
     console.log("Server is running")
