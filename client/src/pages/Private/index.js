@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from "../../components/Layout";
 
 const Private = () => {
     return (
-        <div>
+        <Layout>
             Private
-        </div>
+        </Layout>
     );
 };
 
