@@ -20,7 +20,7 @@ const Signup = () => {
         e.preventDefault()
         axios({
             method: "POST",
-            url: "http://localhost:8000/api/v1/signup",
+            url: "/api/v1/signup",
             data: values
         }).then(({data}) => {
             setValues({name:"", email:"", password:""})
