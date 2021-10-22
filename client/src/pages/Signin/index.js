@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
+import cookie from "js-cookie"
 import Layout from "../../components/Layout";
 
 
 
 const Signin = () => {
+
     const [values, setValues] = useState({
         email:"",
         password:""
@@ -20,21 +22,24 @@ const Signin = () => {
         e.preventDefault()
         axios({
             method: "POST",
-            url: "/api/v1/signin",
+            url: "http://localhost:8000/api/v1/signin",
             data: values
         }).then(({data}) => {
             setValues({email:"", password:""})
+            cookie.set("token", data.token)
             toast.success(data?.message)
+            localStorage.setItem("user", JSON.stringify(data.user))
         }).catch((error) =>{
             setValues({email:"", password:""})
             toast.error(error?.response?.data.error)
         })
     }
+
     return (
         <Layout>
             <ToastContainer />
             <div className="font-sans">
-                <div className="relative  flex flex-col sm:justify-center items-center ">
+                <div className="relative flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">
                         <div
                             className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
