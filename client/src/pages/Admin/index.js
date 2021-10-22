@@ -9,7 +9,7 @@ const Admin = () => {
                     <div className="mb-6">
                         <div className="flex justify-center">
                             <div className="w-14 h-14 rounded-full bg-gray-300 border-2 border-white mt-2">
-                                <img
+                                <img alt=''
                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVxhAxJ4D7MOeTTj6kR9PBeZonW5HM7giKjTbEmR-HMBwf3G1VqGnlwpO1kWrdyIZu8_U&usqp=CAU"
                                     className="rounded-full w-auto"
                                 />
@@ -34,7 +34,7 @@ const Admin = () => {
             </div>
             </aside>
             <aside className="animate__animated animate__fadeInLeft w-52 relative z-0 flex-shrink-0 hidden px-4 overflow-y-auto bg-gray-100 sm:block "
-                   x-show="openMenu ==  1">
+                  >
             <div className="mb-6">
                 <div className="grid grid-cols-1 gap-4 grid-cols-2 mt-6">
                     <div className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
@@ -107,7 +107,7 @@ const Admin = () => {
                         <div className="p-4">
                             <p className="text-sm text-gray-400">Outstanding Revenue</p>
                             <div className="shadow w-full bg-gray-100 mt-2">
-                                <div className="bg-indigo-600 text-xs leading-none py-1 text-center text-white"></div>
+                                <div className="bg-indigo-600 text-xs leading-none py-1 text-center text-white"> </div>
                             </div>
                             <p className="text-xs font-semibold text-gray-400 mt-2">RM 45,941 Overdue</p>
                         </div>
@@ -115,7 +115,7 @@ const Admin = () => {
                 </div>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-3">
                     <div className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
-                        <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
+                        <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"> </div>
                         <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
                             <div>
                                 <h3 className="text-center text-white text-lg">
@@ -125,11 +125,11 @@ const Admin = () => {
                                     RM 27,580
                                 </h3>
                                 <div className="flex space-x-4 mt-4">
-                                    <button className="block uppercase mx-auto shadow bg-white text-indigo-600 focus:shadow-outline 
+                                    <button className="block uppercase mx-auto shadow bg-white text-indigo-600 focus:shadow-outline
                                   focus:outline-none text-white text-xs py-3 px-4 rounded font-bold">
                                         Transfer
                                     </button>
-                                    <button className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline 
+                                    <button className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline
                                    focus:outline-none text-white text-xs py-3 px-4 rounded font-bold">
                                         Request
                                     </button>
@@ -138,7 +138,7 @@ const Admin = () => {
                         </div>
                     </div>
                     <div className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
-                        <div className="absolute inset-0 bg-yellow-600 bg-opacity-75 transition duration-300 ease-in-out"></div>
+                        <div className="absolute inset-0 bg-yellow-600 bg-opacity-75 transition duration-300 ease-in-out"> </div>
                         <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center">
                             <div>
                                 <div className="text-white text-lg flex space-x-2 items-center">
@@ -157,7 +157,7 @@ const Admin = () => {
                         </div>
                     </div>
                     <div className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out">
-                        <div className="absolute inset-0 bg-blue-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
+                        <div className="absolute inset-0 bg-blue-900 bg-opacity-75 transition duration-300 ease-in-out"> </div>
                         <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center">
                             <div>
                                 <div className="text-white text-lg flex space-x-2 items-center">

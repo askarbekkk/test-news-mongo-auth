@@ -11,6 +11,7 @@ import AdminRoute from "./components/AdminRoute";
 
 const Routes = () => {
     return (
+
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={App}/>

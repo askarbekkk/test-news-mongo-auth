@@ -22,7 +22,7 @@ const Signin = () => {
         e.preventDefault()
         axios({
             method: "POST",
-            url: "/api/v1/signin",
+            url: "http://localhost:8000/api/v1/signin",
             data: values
         }).then(({data}) => {
             setValues({email:"", password:""})
@@ -45,9 +45,9 @@ const Signin = () => {
                 <div className="relative flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">
                         <div
-                            className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+                            className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"> </div>
                         <div
-                            className="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+                            className="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"> </div>
                         <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
                             <label htmlFor="" className="block mt-3 text-sm text-gray-700 text-center font-semibold">
                                 Login
@@ -113,7 +113,6 @@ const Signin = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </Layout>
     );

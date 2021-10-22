@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from "./components/Layout";
+import {Link} from "react-router-dom";
 
 const App = () => {
     return (
@@ -14,22 +15,22 @@ const App = () => {
                             </h2>
                             <p className="text-sm md:text-base text-gray-50 mb-4">Explore your favourite events and
                                 register now to showcase your talent and win exciting prizes.</p>
-                            <a href="#"
+                            <Link to='/'
                                className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
-                                Explore Now</a>
+                                Explore Now</Link>
                         </div>
                         <div className="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3  justify-center">
                             <div className="h-48 flex flex-wrap content-center">
                                 <div>
-                                    <img className="inline-block mt-28 hidden xl:block"
+                                    <img className="inline-block mt-28 hidden xl:block" alt=""
                                          src="https://user-images.githubusercontent.com/54521023/116969935-c13d5b00-acd4-11eb-82b1-5ad2ff10fb76.png"/>
                                 </div>
                                 <div>
-                                    <img className="inline-block mt-24 md:mt-0 p-8 md:p-0"
+                                    <img className="inline-block mt-24 md:mt-0 p-8 md:p-0" alt=""
                                          src="https://user-images.githubusercontent.com/54521023/116969931-bedb0100-acd4-11eb-99a9-ff5e0ee9f31f.png"/>
                                 </div>
                                 <div>
-                                    <img className="inline-block mt-28 hidden lg:block"
+                                    <img className="inline-block mt-28 hidden lg:block" alt=""
                                          src="https://user-images.githubusercontent.com/54521023/116969939-c1d5f180-acd4-11eb-8ad4-9ab9143bdb50.png"/>
                                 </div>
                             </div>

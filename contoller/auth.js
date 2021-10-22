@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const signUp = (req, res) =>{
     const {name, email, password} = req.body
     Users.findOne({email}).exec((err, user) =>{
-        if (!user){
+        if (user){
             return res.status(400).json({error: "Email already use"})
         }
         let newUser = new Users({name, email, password})
@@ -28,7 +28,7 @@ const signIn = (req, res) =>{
           return   res.status(400).json({error:"Email or password is not correct"})
         }
         const token = jwt.sign({_id: user._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
-        res.json({message: `Hello ${user.name}`, token: token, user: {_id: user._id, name: user.name, email: user.email, role: user.role}})
+        res.json({token: token, user: {_id: user._id, name: user.name, email: user.email, role: user.role}})
     })
 }
 
