@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from "react-router-dom";
+import {Link, Redirect, useHistory} from "react-router-dom";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
 import {authenticate, isAuth} from "../../lib/helpers";
@@ -22,7 +22,7 @@ const Signin = () => {
         e.preventDefault()
         axios({
             method: "POST",
-            url: "http://localhost:8000/api/v1/signin",
+            url: "",
             data: values
         }).then(({data}) => {
             setValues({email:"", password:""})
@@ -38,6 +38,9 @@ const Signin = () => {
     return (
         <Layout>
             <ToastContainer />
+            {
+                isAuth() ? <Redirect to='/'/> : null
+            }
             <div className="font-sans">
                 <div className="relative flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">
