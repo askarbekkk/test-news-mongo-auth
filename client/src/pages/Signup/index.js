@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify";
 import Layout from "../../components/Layout";
 
 
 const Signup = () => {
+    const history = useHistory()
     const [values, setValues] = useState({
         name:"",
         email:"",
@@ -20,11 +22,12 @@ const Signup = () => {
         e.preventDefault()
         axios({
             method: "POST",
-            url: "/api/v1/signup",
+            url: "http://localhost:8000/api/v1/signup",
             data: values
         }).then(({data}) => {
             setValues({name:"", email:"", password:""})
             toast.success(data?.message)
+            history.push("/signin")
         }).catch((error) =>{
             setValues({name:"", email:"", password:""})
             toast.error(error?.response?.data?.error)
