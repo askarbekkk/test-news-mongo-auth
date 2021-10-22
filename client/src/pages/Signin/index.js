@@ -22,7 +22,7 @@ const Signin = () => {
         e.preventDefault()
         axios({
             method: "POST",
-            url: "/api/v1/signin",
+            url: "http://localhost:8000/api/v1/signin",
             data: values
         }).then(({data}) => {
             setValues({email:"", password:""})
