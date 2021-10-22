@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const signUp = (req, res) =>{
     const {name, email, password} = req.body
     Users.findOne({email}).exec((err, user) =>{
-        if (user){
+        if (!user){
             return res.status(400).json({error: "Email already use"})
         }
         let newUser = new Users({name, email, password})
@@ -20,8 +20,7 @@ const signUp = (req, res) =>{
 const signIn = (req, res) =>{
     const {email, password} = req.body
     Users.findOne({email}).exec(async (error, user) =>{
-        if (error){
-            console.log(error)
+        if (!user){
           return   res.status(400).json({error: "User not found"})
         }
         const correctPassword = await user.authenticate(password)

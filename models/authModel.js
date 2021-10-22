@@ -19,7 +19,7 @@ userSchema.pre("save", function (next){
 
 userSchema.methods.authenticate = function (password) {
     const hash_password = this.password
-    return  bcrypt.compare(String(password), hash_password)
+    return  bcrypt.compare(password, hash_password)
 }
 
 module.exports = mongoose.model("users", userSchema)

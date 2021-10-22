@@ -27,7 +27,7 @@ const Signin = () => {
             toast.success(data?.message)
         }).catch((error) =>{
             setValues({email:"", password:""})
-            toast.error(error.response?.data.error)
+            toast.error(error?.response?.data.error)
         })
     }
     return (
