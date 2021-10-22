@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, useHistory} from "react-router-dom";
 import {isAuth, logout} from "../../lib/helpers";
+import logo from "../../images/1608376673794-removebg-preview.png"
 
 const Header = () => {
     const history = useHistory()
@@ -9,9 +10,8 @@ const Header = () => {
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                 <Link to='/'
                     className="flex lg:w-1/5 title-font font-medium items-center lg:items-center lg:justify-center mb-4 md:mb-0">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" width="40"
+                    <img src={logo} className='logo-img'
                          alt="logo"/>
-                    <span className="ml-3 text-xl">Facebook</span>
                 </Link>
                 <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
                     <Link to='/'
