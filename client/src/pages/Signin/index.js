@@ -4,6 +4,7 @@ import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
 import cookie from "js-cookie"
 import Layout from "../../components/Layout";
+import {authenticate} from "../../lib/helpers";
 
 
 
@@ -26,10 +27,16 @@ const Signin = () => {
             data: values
         }).then(({data}) => {
             setValues({email:"", password:""})
-            cookie.set("token", data.token)
-            toast.success(data?.message)
-            localStorage.setItem("user", JSON.stringify(data.user))
-        }).catch((error) =>{
+            authenticate(data)
+            const checkToken = cookie.get("token")
+            if (checkToken){
+                if (localStorage.getItem("user")){
+                    return JSON.parse(localStorage.getItem("user"))
+                } else {
+                    return null
+                }
+            }
+        }).catch((error) => {
             setValues({email:"", password:""})
             toast.error(error?.response?.data.error)
         })
