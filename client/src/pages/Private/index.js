@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from "../../components/Layout";
 
-const Private = () => {
+const PrivatePage = () => {
     return (
         <Layout>
-            Private
+            private
         </Layout>
     );
 };
 
-export default Private;
+export default PrivatePage;

@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
-import cookie from "js-cookie"
+import {authenticate, isAuth} from "../../lib/helpers";
 import Layout from "../../components/Layout";
-import {authenticate} from "../../lib/helpers";
 
 
 
 const Signin = () => {
-
+    const history = useHistory()
     const [values, setValues] = useState({
         email:"",
         password:""
@@ -27,15 +26,9 @@ const Signin = () => {
             data: values
         }).then(({data}) => {
             setValues({email:"", password:""})
+            toast.success(`Hello ${data?.user.name}`)
             authenticate(data)
-            const checkToken = cookie.get("token")
-            if (checkToken){
-                if (localStorage.getItem("user")){
-                    return JSON.parse(localStorage.getItem("user"))
-                } else {
-                    return null
-                }
-            }
+            isAuth() && isAuth().role === "user" ? history.push("/private") : history.push("/admin")
         }).catch((error) => {
             setValues({email:"", password:""})
             toast.error(error?.response?.data.error)

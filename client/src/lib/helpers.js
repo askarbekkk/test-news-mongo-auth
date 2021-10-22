@@ -1,8 +1,22 @@
 import cookie from "js-cookie";
-import {toast} from "react-toastify";
 
 export const authenticate = (data) => {
     cookie.set("token", data.token, {expiresIn: "1d"})
-    toast.success(data?.message)
     localStorage.setItem("user", JSON.stringify(data.user))
+}
+
+export const isAuth = () => {
+    const checkToken = cookie.get("token")
+    if (checkToken) {
+        if (localStorage.getItem("user")) {
+            return JSON.parse(localStorage.getItem("user"))
+        } else {
+            return false
+        }
+    }
+}
+
+export const logout = () => {
+    localStorage.removeItem("user")
+    cookie.remove("token")
 }
