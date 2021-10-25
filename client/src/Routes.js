@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import App from "./App";
 import Signup from "./pages/Signup";
@@ -9,11 +9,20 @@ import PrivateRoute from "./components/PrivatRoute";
 import AdminRoute from "./components/AdminRoute";
 import News from "./pages/News";
 import AddNews from "./pages/AddNews";
+import axios from "axios";
+import {authenticate} from "./lib/helpers";
+import cookie from "js-cookie"
 
 
 const Routes = () => {
-    return (
 
+    // useEffect(() =>{
+    //     const checkToken = cookie.get("token")
+    //     axios.post("http://localhost:8000/api/v1/authenticate", {token: checkToken})
+    //         .then(({data}) => authenticate(data))
+    // },[])
+
+    return (
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={App}/>

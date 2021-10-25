@@ -32,4 +32,9 @@ const signIn = (req, res) =>{
     })
 }
 
-module.exports = {signUp, signIn}
+const authenticate = (req, res) => {
+    const userId = jwt.verify(req.body.token, process.env.SECRET_KEY)
+    res.json([userId])
+}
+
+module.exports = {signUp, signIn, authenticate}
