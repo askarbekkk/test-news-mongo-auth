@@ -1,21 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Layout from "../../components/Layout";
+import axios from "axios";
+import {toast, ToastContainer} from "react-toastify";
 
 const AddNews = () => {
-    const handleSubmit = () => {
 
+    const userId = JSON.parse(localStorage.getItem("user"))
+
+    const [values, setValues] = useState({
+        title: "",
+        description: "",
+        author: userId?._id
+    })
+
+    const handleValue = (e) => {
+      setValues({...values, [e.target.name]: e.target.value})
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post("http://localhost:8000/api/v1/news", values)
+            .then(({data}) => {
+                setValues({
+                    title: "",
+                    description: "",
+                    author: userId?._id
+                })
+                toast.success("News successfully created!")
+            }).catch((error) =>{
+            setValues({name:"", email:"", password:""})
+            toast.error("Error to created news!")
+        })
+    }
+
     return (
         <Layout>
+            <ToastContainer />
             <div className="flex mx-auto items-center justify-center shadow-lg mx-8 mb-4 max-w-lg">
                 <form onSubmit={handleSubmit} className="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <h2 className="px-4 pt-3 pb-2 text-gray-800 text-lg">Add news</h2>
                         <div className="w-full md:w-full px-3 mb-2 mt-2">
-                            <input type='text' className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body"  required/>
+                            <input onChange={handleValue} type='text' className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="title" value={values.title}  required/>
                         </div>
                         <div className="w-full md:w-full px-3 mb-2 mt-2">
-                            <textarea className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="body" required/>
+                            <textarea onChange={handleValue} className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white" name="description" value={values.description} required/>
                         </div>
                         <div className="w-full md:w-full flex items-start md:w-full px-3">
                             <div className="-mr-1">
@@ -25,20 +54,6 @@ const AddNews = () => {
                     </div>
                 </form>
             </div>
-            {/*<form classNameName=''>*/}
-            {/*    <div classNameName="mb-5">*/}
-            {/*        <input*/}
-            {/*            type="text"*/}
-            {/*            name="default"*/}
-            {/*            placeholder="News title"*/}
-            {/*            classNameName="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"*/}
-            {/*        />*/}
-            {/*    </div>*/}
-            {/*    <textarea rows="4" maxLength="210" classNameName="bg-green-500 w-3/5 mt-1 py-2 px-3 rounded-md shadow-sm focus:outline-none "/>*/}
-            {/*    <div>*/}
-            {/*        <button classNameName='bg-blue-500 hover:bg-blue-800 text-white ml-4 py-2 px-3 rounded-lg'>Create news</button>*/}
-            {/*    </div>*/}
-            {/*</form>*/}
         </Layout>
     );
 };
