@@ -18,6 +18,8 @@ const Header = () => {
                         className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">Home</Link>
                     <Link to='/private'
                         className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">Private</Link>
+                    <Link to='/news'
+                          className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">News</Link>
                     {
                         isAuth()?.role === "admin" &&
                         <Link to='/admin' className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">Admin</Link>
