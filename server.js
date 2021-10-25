@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const chalk = require("chalk")
 require("dotenv").config()
 const authRouter = require("./routes/auth")
+const newsRouter = require("./routes/news")
 const path = require("path");
 
 const server = express()
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO_URL)
     .catch(() => console.log(chalk.red("DB not connected")))
 
 server.use("/api/v1", authRouter)
+server.use("/api/v1/news", newsRouter)
 
 server.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "client/build/index.html"))

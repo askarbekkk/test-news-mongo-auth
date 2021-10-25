@@ -1,20 +1,19 @@
 import React from 'react';
 import Layout from "../../components/Layout";
-import {useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {isAuth} from "../../lib/helpers";
 
 const News = () => {
-    const history = useHistory()
-    const addNews = () => {
-      history.push('/add_news')
-    }
     return (
         <Layout>
-            <section className="text-gray-600 body-font">
+            <div className='flex items-center justify-between'>
+                <h2 className="text-4xl">News</h2>
                 {
-                    isAuth() &&  <button onClick={addNews} className='bg-green-500 hover:bg-green-800 text-white ml-4 py-2 px-3 rounded-lg'>Add news</button>
+                    isAuth() &&  <Link to='/add_news' className='bg-green-500 hover:bg-green-800 text-white ml-4 py-2 px-3 rounded-lg'>Add news</Link>
 
                 }
+            </div>
+            <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto max-w-7x1">
                     <div className="flex flex-wrap -m-4">
                         <div className="xl:w-1/3 md:w-1/2 p-4">

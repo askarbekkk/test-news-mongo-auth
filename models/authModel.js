@@ -2,10 +2,12 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
 const userSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     name: {type: String, trim: true, required: true, max: 28},
     email: {type: String, trim: true, required: true, unique: true, lowercase: true},
     password: {type: String, trim: true, required: true},
-    role: {type: String, default: "user"}
+    role: {type: String, default: "user"},
+    news:[{type:mongoose.Schema.Types.ObjectId, ref: "news"}]
 }, {timestamps: true})
 
 userSchema.pre("save", function (next){
