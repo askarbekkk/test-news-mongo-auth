@@ -1,4 +1,5 @@
 const News = require('../models/newsModel')
+const User = require('../models/authModel')
 
 
 const createNews = async (req, res) => {
