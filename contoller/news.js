@@ -6,6 +6,7 @@ const createNews = async (req, res) => {
     try {
         const newPost = new News(req.body)
         const savedPost = await newPost.save()
+        const author = User.findByIdAndUpdate({})
         res.json(savedPost)
     } catch (e) {
         res.status(400).json({message: "Error to saved"})

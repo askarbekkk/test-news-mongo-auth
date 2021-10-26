@@ -2,15 +2,13 @@ import React, {useState} from 'react';
 import Layout from "../../components/Layout";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
+import {isAuth} from "../../lib/helpers";
 
 const AddNews = () => {
 
-    const userId = JSON.parse(localStorage.getItem("user"))
-
     const [values, setValues] = useState({
         title: "",
-        description: "",
-        author: userId?._id
+        description: ""
     })
 
     const handleValue = (e) => {
@@ -19,18 +17,11 @@ const AddNews = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8000/api/v1/news", values)
-            .then(({data}) => {
-                setValues({
-                    title: "",
-                    description: "",
-                    author: userId?._id
-                })
-                toast.success("News successfully created!")
-            }).catch((error) =>{
-            setValues({name:"", email:"", password:""})
-            toast.error("Error to created news!")
-        })
+        const author = isAuth()._id
+        axios.post("http://localhost:8000/api/v1/news", {...values, author})
+            .then(() => toast.success("News successfully created!"))
+            .catch(() =>toast.error("Error to created news!"))
+            .finally(() => setValues({name:"", email:"", password:""}))
     }
 
     return (
