@@ -23,7 +23,7 @@ const UserPage = () => {
                             <div className="bg-white p-6 rounded-lg">
                                 <img
                                     className="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-full object-cover object-center mb-6"
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/BBC_World_News_red.svg/1200px-BBC_World_News_red.svg.png"
+                                    src="https://source.unsplash.com/random"
                                     alt=""/>
                                 <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{item.title}</h2>
                                 <p className="leading-relaxed text-base">{item.description}</p>
