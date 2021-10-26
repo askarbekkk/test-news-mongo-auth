@@ -20,8 +20,8 @@ const AddNews = () => {
         const author = isAuth()._id
         axios.post("http://localhost:8000/api/v1/news", {...values, author})
             .then(() => toast.success("News successfully created!"))
-            .catch(() =>toast.error("Error to created news!"))
-            .finally(() => setValues({name:"", email:"", password:""}))
+            .catch(() => toast.error("Error to created news!"))
+            .finally(() => setValues({title:"", description:""}))
     }
 
     return (
