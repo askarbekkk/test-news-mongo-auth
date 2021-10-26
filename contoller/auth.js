@@ -47,4 +47,15 @@ const authenticate = (req, res) => {
     }
 }
 
-module.exports = {signUp, signIn, authenticate}
+const getUserInfo = async (req, res) =>{
+    try{
+        const {id} = req.params
+        const user = await Users.findOne({_id: id}).populate("news")
+        res.json(user)
+    } catch (e) {
+        res.status(400).res.json({message: "Error to get user"})
+    }
+}
+
+
+module.exports = {signUp, signIn, authenticate, getUserInfo}

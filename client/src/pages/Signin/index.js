@@ -28,7 +28,7 @@ const Signin = () => {
             setValues({email:"", password:""})
             toast.success(`Hello ${data?.user.name}`)
             authenticate(data)
-            isAuth() && isAuth().role === "user" ? history.push("/private") : history.push("/admin")
+            isAuth() && isAuth().role === "admin" ? history.push("/admin") : history.push("/private")
         }).catch((error) => {
             setValues({email:"", password:""})
             toast.error(error?.response?.data.error)
