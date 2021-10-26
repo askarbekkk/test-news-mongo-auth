@@ -35,7 +35,7 @@ const News = () => {
                                         <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{item.title}</h2>
                                         <p className="leading-relaxed text-base">{item.description}</p>
                                         <div className='flex items-center justify-between'>
-                                            <h3 className="tracking-widest text-red-700 text-lg font-medium title-font ">{item?.author?.name} - {item?.author?.role}</h3>
+                                            <Link to={`/user/${item?.author?._id}`} className="tracking-widest text-red-700 text-lg font-medium title-font ">{item?.author?.name}</Link>
                                             <p className="tracking-widest text-indigo-500 text-xs font-medium title-font">{item.createdAt.slice(0, 10)}</p>
                                         </div>
                                     </div>

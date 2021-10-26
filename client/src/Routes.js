@@ -12,6 +12,7 @@ import AddNews from "./pages/AddNews";
 import axios from "axios";
 import {authenticate, logout} from "./lib/helpers";
 import cookie from "js-cookie"
+import UserPage from "./pages/UserPage";
 
 
 const Routes = () => {
@@ -30,6 +31,7 @@ const Routes = () => {
                 <Route exact path='/signup' component={Signup}/>
                 <Route exact path='/signin' component={Signin}/>
                 <Route exact path='/news' component={News}/>
+                <Route exact path='/user/:id' component={UserPage}/>
                 <PrivateRoute exact path='/add_news' component={AddNews}/>
                 <PrivateRoute exact path='/private' component={Private}/>
                 <AdminRoute exact path='/admin' component={Admin}/>
