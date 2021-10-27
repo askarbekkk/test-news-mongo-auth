@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     email: {type: String, trim: true, required: true, unique: true, lowercase: true},
     password: {type: String, trim: true, required: true},
     role: {type: String, default: "user"},
-    news:[{type:mongoose.Schema.Types.ObjectId, ref: "news"}]
+    news:[{type:mongoose.Schema.Types.ObjectId, ref: "news"}],
+    comments:[{type:mongoose.Schema.Types.ObjectId, ref: "comments"}]
 }, {timestamps: true})
 
 userSchema.pre("save", function (next){
