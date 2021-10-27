@@ -15,7 +15,7 @@ const createNews = async (req, res) => {
 
 const getAllNews = async (req, res) => {
     try{
-        const news = await News.find({}).populate("author")
+        const news = await News.find({}).populate("author", "-password")
         res.json(news)
     } catch (e) {
         res.status(400).json({message: "Error to get post"})
