@@ -38,7 +38,7 @@ const NewsDetails = () => {
     }
 
     const handleLikes = (id) => {
-        axios.patch(`http://localhost:8000/api/v1/comments/${id}`)
+        axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
             .then(({data}) => {
                 setNews({
                     ...news, comments: news.comments.map(el => {
