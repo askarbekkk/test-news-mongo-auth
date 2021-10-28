@@ -14,4 +14,13 @@ const createComments = async (req, res) => {
     }
 }
 
-module.exports = {createComments}
+const getAllComments = async (req, res) => {
+    try{
+        const news = await News.find({}).populate("comments")
+        res.json(news)
+    } catch (e) {
+        res.status(400).json({message: "Error to get comment"})
+    }
+}
+
+module.exports = {createComments, getAllComments}

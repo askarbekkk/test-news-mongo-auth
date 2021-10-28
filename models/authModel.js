@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     password: {type: String, trim: true, required: true},
     role: {type: String, default: "user"},
     news:[{type:mongoose.Schema.Types.ObjectId, ref: "news"}],
-    comments:[{type:mongoose.Schema.Types.ObjectId, ref: "comments"}]
+    image:{type: String, default:"https://source.unsplash.com/random"}
 }, {timestamps: true})
 
 userSchema.pre("save", function (next){

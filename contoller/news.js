@@ -22,4 +22,13 @@ const getAllNews = async (req, res) => {
     }
 }
 
-module.exports = {createNews, getAllNews}
+const getOneNews = async (req, res) => {
+    try{
+        const news = await News.findOne({_id: req.params.id}).populate('comments', "-password")
+        res.json(news)
+    } catch (e) {
+        res.status(400).json({message: "Error to get post"})
+    }
+}
+
+module.exports = {createNews, getAllNews, getOneNews}
