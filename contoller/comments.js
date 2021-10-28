@@ -6,7 +6,7 @@ const createComments = async (req, res) => {
     try {
         const newComment = new Comments(req.body)
         const savedComment = await newComment.save()
-        await News.findOneAndUpdate({author: savedComment.author}, {$push: {comments: savedComment._id}})
+        await News.findOneAndUpdate({_id: savedComment.news}, {$push: {comments: savedComment._id}})
         await User.findByIdAndUpdate(savedComment.author, {$push: {comments: savedComment._id}})
         res.json(savedComment)
     } catch (e) {
@@ -23,4 +23,22 @@ const getAllComments = async (req, res) => {
     }
 }
 
-module.exports = {createComments, getAllComments}
+const likeComment = async (req, res) => {
+    try{
+        const comment = await Comments.findByIdAndUpdate(req.params.id, {$inc : {'likes' : 1}}, {new:true})
+        res.json(comment)
+    } catch (e) {
+        res.status(400).json({message: "Error to get comment"})
+    }
+}
+
+const disLikeComment = async (req, res) => {
+    try{
+        const comment = await Comments.findByIdAndUpdate(req.params.id, {$inc : {'likes' : -1}}, {new:true})
+        res.json(comment)
+    } catch (e) {
+        res.status(400).json({message: "Error to get comment"})
+    }
+}
+
+module.exports = {createComments, getAllComments, likeComment, disLikeComment}

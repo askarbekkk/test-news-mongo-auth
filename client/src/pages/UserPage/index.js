@@ -10,7 +10,7 @@ const UserPage = () => {
     useEffect(() => {
         axios(`http://localhost:8000/api/v1/user/${id}`)
             .then(({data}) => setUserInfo(data))
-    },[])
+    },[id])
 
     return (
         <Layout>
