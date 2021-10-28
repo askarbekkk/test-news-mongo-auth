@@ -118,8 +118,10 @@ const NewsDetails = () => {
                                     <div className='flex'>
                                         <button onClick={() => handleLikes(item._id)}><i
                                             className="far fa-thumbs-up text-green-600 mr-3"/></button>
-                                        <button onClick={() => handleDisLikes(item._id)}><i
-                                            className="far fa-thumbs-down text-red-500"/></button>
+                                        {
+                                            !!item.likes &&  <button onClick={() => handleDisLikes(item._id)}><i
+                                                className="far fa-thumbs-down text-red-500"/></button>
+                                        }
                                     </div>
                                 </div>
                             )
