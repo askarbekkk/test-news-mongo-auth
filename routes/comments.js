@@ -7,6 +7,6 @@ router.post("/", createComments)
 router.get("/", getAllComments)
 router.patch("/like/:id", likeComment)
 router.patch("/dislike/:id", disLikeComment)
-router.patch("/delete/:id", deleteComment)
+router.delete("/delete/:id", deleteComment)
 
 module.exports = router
