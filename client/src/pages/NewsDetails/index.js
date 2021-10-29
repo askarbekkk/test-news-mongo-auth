@@ -73,6 +73,11 @@ const NewsDetails = () => {
         return <Spinner/>
     }
 
+    const deleteComment = (id) => {
+      axios.delete(`http://localhost:8000/api/v1/comments/delete/${id}`)
+          .then(({data}) => toast.success("Comment deleted"))
+    }
+
     return (
         <Layout>
             <ToastContainer/>
@@ -124,6 +129,7 @@ const NewsDetails = () => {
                                                 className="far fa-thumbs-down text-red-500"/></button>
                                         }
                                     </div>
+                                    <button onClick={() => deleteComment(item._id)}><i className="far fa-trash-alt text-red-700"/></button>
                                 </div>
                             )
                         }
