@@ -41,4 +41,9 @@ const disLikeComment = async (req, res) => {
     }
 }
 
-module.exports = {createComments, getAllComments, likeComment, disLikeComment}
+const deleteComment = async (req, res) => {
+    const comment = await Comments.findByIdAndDelete(req.params.id)
+    res.json({status:"Successfully deleted"})
+}
+
+module.exports = {createComments, getAllComments, likeComment, disLikeComment, deleteComment}
