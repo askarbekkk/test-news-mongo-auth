@@ -76,14 +76,15 @@ const NewsDetails = () => {
     return (
         <Layout>
             <ToastContainer/>
-           <div className='flex'>
-               <img className="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-64 object-cover object-center mb-6 mr-10"
+            <div className='flex'>
+                <img
+                    className="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-64 object-cover object-center mb-6 mr-10"
                     src={news.image} alt=""/>
-               <div>
-                   <h1>{news.title}</h1>
-                   <p>{news.description}</p>
-               </div>
-           </div>
+                <div>
+                    <h1>{news.title}</h1>
+                    <p>{news.description}</p>
+                </div>
+            </div>
             <div>
                 <section className="rounded-b-lg  mt-4 ">
                     {
@@ -119,7 +120,7 @@ const NewsDetails = () => {
                                         <button onClick={() => handleLikes(item._id)}><i
                                             className="far fa-thumbs-up text-green-600 mr-3"/></button>
                                         {
-                                            !!item.likes &&  <button onClick={() => handleDisLikes(item._id)}><i
+                                            !!item.likes && <button onClick={() => handleDisLikes(item._id)}><i
                                                 className="far fa-thumbs-down text-red-500"/></button>
                                         }
                                     </div>
