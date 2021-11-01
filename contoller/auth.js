@@ -51,7 +51,13 @@ const getUserInfo = async (req, res) =>{
     try{
         const {id} = req.params
         const user = await Users.findOne({_id: id}).populate("news")
-        res.json(user)
+        res.json({
+            _id: user._id,
+            email: user.email,
+            role: user.role,
+            name: user.name,
+            news: user.news
+        })
     } catch (e) {
         res.status(400).res.json({message: "Error to get user"})
     }
