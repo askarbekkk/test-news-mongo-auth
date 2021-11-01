@@ -8,7 +8,6 @@ const createComments = async (req, res) => {
         const savedComment = await newComment.save()
         await News.findOneAndUpdate({_id: savedComment.news}, {$push: {comments: savedComment._id}}, {new: true})
         const author = await User.findById(savedComment.author)
-        console.log(author)
         res.json({...savedComment._doc, author})
     } catch (e) {
         res.status(400).json({message: "Error to saved"})
