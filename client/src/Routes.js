@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import React from 'react';
+import {Router, Route, Switch} from "react-router-dom";
 import App from "./App";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
@@ -11,6 +11,7 @@ import News from "./pages/News";
 import AddNews from "./pages/AddNews";
 import UserPage from "./pages/UserPage";
 import NewsDetails from "./pages/NewsDetails";
+import {history} from "./lib/history";
 
 
 const Routes = () => {
@@ -23,7 +24,7 @@ const Routes = () => {
     // },[])
 
     return (
-        <BrowserRouter>
+        <Router history={history}>
             <Switch>
                 <Route exact path='/' component={App}/>
                 <Route exact path='/signup' component={Signup}/>
@@ -35,7 +36,7 @@ const Routes = () => {
                 <PrivateRoute exact path='/private' component={Private}/>
                 <AdminRoute exact path='/admin' component={Admin}/>
             </Switch>
-        </BrowserRouter>
+        </Router>
     );
 };
 
