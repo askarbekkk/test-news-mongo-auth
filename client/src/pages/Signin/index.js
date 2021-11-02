@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
-import {Link, Redirect, useHistory} from "react-router-dom";
-import axios from "axios";
+import {Link, Redirect} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
-import {authenticate, isAuth} from "../../lib/helpers";
 import Layout from "../../components/Layout";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {signIn} from "../../redux/actions/userActions";
 
 
 
 const Signin = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
+    const auth = useSelector(s => s.user.auth)
     const [values, setValues] = useState({
         email:"",
         password:""
@@ -42,9 +40,9 @@ const Signin = () => {
     return (
         <Layout>
             <ToastContainer />
-            {/*{*/}
-            {/*    isAuth() ? <Redirect to='/'/> : null*/}
-            {/*}*/}
+            {
+                auth ? <Redirect to='/'/> : null
+            }
             <div className="font-sans">
                 <div className="relative flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">
