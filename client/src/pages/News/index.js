@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Layout from "../../components/Layout";
 import {Link} from "react-router-dom";
-import {isAuth} from "../../lib/helpers";
 import {useDispatch, useSelector} from "react-redux";
 import {getNews} from "../../redux/actions/newsAction";
 
 const News = () => {
     const dispatch = useDispatch()
+    const auth = useSelector(s => s.user.auth)
     const {news, isLoading} = useSelector(s => s.news)
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const News = () => {
             <div className='flex items-center justify-between'>
                 <h2 className="text-4xl">News</h2>
                 {
-                    isAuth() && <Link to='/add_news'
+                    auth && <Link to='/add_news'
                                       className='bg-green-500 hover:bg-green-800 text-white ml-4 py-2 px-3 rounded-lg'>Add
                         news</Link>
 
