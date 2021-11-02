@@ -1,12 +1,13 @@
 import {Redirect, Route} from "react-router-dom";
-import {isAuth} from "../../lib/helpers";
+import {useSelector} from "react-redux";
 
 function PrivateRoute({ component: Component, ...rest }) {
+    const auth = useSelector(s => s.user.auth)
     return (
         <Route
             {...rest}
             render={({ location }) =>
-                isAuth() ? (
+                auth ? (
                     <Component />
                 ) : (
                     <Redirect

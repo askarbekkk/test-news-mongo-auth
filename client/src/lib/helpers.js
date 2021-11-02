@@ -1,7 +1,5 @@
 import cookie from "js-cookie";
 
-export const authenticate = (data) => {
-}
 
 export const isAuth = () => {
     const checkToken = cookie.get("token")
@@ -12,9 +10,4 @@ export const isAuth = () => {
             return false
         }
     }
-}
-
-export const logout = () => {
-    localStorage.removeItem("user")
-    cookie.remove("token")
 }

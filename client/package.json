@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "autoprefixer": "^10.3.7",
     "axios": "^0.23.0",
+    "history": "4.10.1",
     "js-cookie": "^3.0.1",
     "postcss": "^8.3.10",
     "postcss-cli": "^9.0.1",

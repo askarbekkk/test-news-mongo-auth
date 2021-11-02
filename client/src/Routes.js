@@ -9,9 +9,6 @@ import PrivateRoute from "./components/PrivatRoute";
 import AdminRoute from "./components/AdminRoute";
 import News from "./pages/News";
 import AddNews from "./pages/AddNews";
-import axios from "axios";
-import {authenticate, logout} from "./lib/helpers";
-import cookie from "js-cookie"
 import UserPage from "./pages/UserPage";
 import NewsDetails from "./pages/NewsDetails";
 

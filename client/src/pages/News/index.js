@@ -2,14 +2,17 @@ import React, {useEffect, useState} from 'react';
 import Layout from "../../components/Layout";
 import {Link} from "react-router-dom";
 import {isAuth} from "../../lib/helpers";
-import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {getNews} from "../../redux/actions/newsAction";
 
 const News = () => {
-    const [news, setNews] = useState([])
+    const dispatch = useDispatch()
+    const {news, isLoading} = useSelector(s => s.news)
+
     useEffect(() => {
-        axios("http://localhost:8000/api/v1/news")
-            .then(({data}) => setNews(data))
+        dispatch(getNews())
     }, [])
+
     return (
         <Layout>
             <div className='flex items-center justify-between'>
