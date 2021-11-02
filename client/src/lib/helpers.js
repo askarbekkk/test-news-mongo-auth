@@ -1,8 +1,6 @@
 import cookie from "js-cookie";
 
 export const authenticate = (data) => {
-    cookie.set("token", data.token, {expiresIn: "1d"})
-    localStorage.setItem("user", JSON.stringify(data.user))
 }
 
 export const isAuth = () => {

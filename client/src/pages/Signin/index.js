@@ -4,10 +4,13 @@ import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
 import {authenticate, isAuth} from "../../lib/helpers";
 import Layout from "../../components/Layout";
+import {useDispatch} from "react-redux";
+import {signIn} from "../../redux/actions/userActions";
 
 
 
 const Signin = () => {
+    const dispatch = useDispatch()
     const history = useHistory()
     const [values, setValues] = useState({
         email:"",
@@ -20,27 +23,28 @@ const Signin = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios({
-            method: "POST",
-            url: "http://localhost:8000/api/v1/signin",
-            data: values
-        }).then(({data}) => {
-            setValues({email:"", password:""})
-            toast.success(`Hello ${data?.user.name}`)
-            authenticate(data)
-            isAuth() && isAuth().role === "admin" ? history.push("/admin") : history.push("/private")
-        }).catch((error) => {
-            setValues({email:"", password:""})
-            toast.error(error?.response?.data.error)
-        })
+        dispatch(signIn(values))
+        // axios({
+        //     method: "POST",
+        //     url: "http://localhost:8000/api/v1/signin",
+        //     data: values
+        // }).then(({data}) => {
+        //     setValues({email:"", password:""})
+        //     toast.success(`Hello ${data?.user.name}`)
+        //     authenticate(data)
+        //     isAuth() && isAuth().role === "admin" ? history.push("/admin") : history.push("/private")
+        // }).catch((error) => {
+        //     setValues({email:"", password:""})
+        //     toast.error(error?.response?.data.error)
+        // })
     }
 
     return (
         <Layout>
             <ToastContainer />
-            {
-                isAuth() ? <Redirect to='/'/> : null
-            }
+            {/*{*/}
+            {/*    isAuth() ? <Redirect to='/'/> : null*/}
+            {/*}*/}
             <div className="font-sans">
                 <div className="relative flex flex-col sm:justify-center items-center ">
                     <div className="relative sm:max-w-sm w-full">

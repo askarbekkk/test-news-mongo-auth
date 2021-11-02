@@ -17,13 +17,13 @@ import NewsDetails from "./pages/NewsDetails";
 
 
 const Routes = () => {
-
-    useEffect(() =>{
-        const checkToken = cookie.get("token")
-        axios.post("http://localhost:8000/api/v1/authenticate", {token: checkToken})
-            .then(({data}) => authenticate(data))
-            .catch(() => logout())
-    },[])
+    //
+    // useEffect(() =>{
+    //     const checkToken = cookie.get("token")
+    //     axios.post("http://localhost:8000/api/v1/authenticate", {token: checkToken})
+    //         .then(({data}) => authenticate(data))
+    //         .catch(() => logout())
+    // },[])
 
     return (
         <BrowserRouter>
