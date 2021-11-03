@@ -12,6 +12,8 @@ export const newsReducer = (state = initialState, action) => {
             return {...state, news: action.payload, isLoading: false}
         case "NEWS_FAILED":
             return {...state, error: action.payload, isLoading: false}
+        case "ADD_NEWS":
+            return {...state, news: [...state.news, action.payload], isLoading: false}
         default:
             return state
     }

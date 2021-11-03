@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import Layout from "../../components/Layout";
-import axios from "axios";
-import {toast, ToastContainer} from "react-toastify";
-import {isAuth} from "../../lib/helpers";
+import {ToastContainer} from "react-toastify";
+import {useDispatch, useSelector} from "react-redux";
+import {addNews} from "../../redux/actions/newsAction";
 
 const AddNews = () => {
-
+    const userId = useSelector(s => s.user.user._id)
+    const dispatch = useDispatch()
     const [values, setValues] = useState({
         title: "",
         description: ""
@@ -17,11 +18,12 @@ const AddNews = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const author = isAuth()._id
-        axios.post("http://localhost:8000/api/v1/news", {...values, author})
-            .then(() => toast.success("News successfully created!"))
-            .catch(() => toast.error("Error to created news!"))
-            .finally(() => setValues({title:"", description:""}))
+        const newNews = {...values, author: userId}
+        dispatch(addNews(newNews))
+        setValues({
+            title: "",
+            description: ""
+        })
     }
 
     return (

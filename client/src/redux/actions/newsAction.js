@@ -1,4 +1,6 @@
 import axiosV1 from "../../services/customAxios";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 
 export const getNews = () =>{
@@ -12,4 +14,16 @@ export const getNews = () =>{
                 dispatch({type: "NEWS_FAILED"})
             })
     }
+}
+
+export const addNews = (newNews) => {
+  return (dispatch) =>{
+      axios.post("http://localhost:8000/api/v1/news", newNews)
+          .then(({data}) => {
+              console.log(data)
+              dispatch({type: "ADD_NEWS", payload: data})
+              toast.success("News successfully created!")
+          })
+          .catch(() => toast.error("Error to created news!"))
+  }
 }

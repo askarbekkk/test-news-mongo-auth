@@ -28,7 +28,7 @@ const News = () => {
                 <div className="container px-5 py-24 mx-auto max-w-7x1">
                     <div className="flex flex-wrap -m-4">
                         {
-                            news.map(item =>
+                            news?.map(item =>
                                 <div className="xl:w-1/3 md:w-1/2 p-4" key={item._id}>
                                     <div className="bg-white p-6 rounded-lg">
                                         <Link to={`/news_details/${item._id}`}>
