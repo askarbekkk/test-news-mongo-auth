@@ -5,9 +5,11 @@ import {useParams} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import {isAuth} from "../../lib/helpers";
 import Spinner from "../../components/Spinner";
+import {useSelector} from "react-redux";
 
 const NewsDetails = () => {
     const {id} = useParams()
+    const auth = useSelector(s => s.user.auth)
     const [news, setNews] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [comment, setComment] = useState({
@@ -92,7 +94,7 @@ const NewsDetails = () => {
                         <div>
                             <section className="rounded-b-lg  mt-4 ">
                                 {
-                                    isAuth() && <div className='flex flex-col-reverse'>
+                                    auth && <div className='flex flex-col-reverse'>
                                         <button onClick={pushComment}
                                                 className="font-bold py-2 px-4 w-96 bg-purple-400 text-lg text-white shadow-md rounded-lg ">Comment
                                         </button>

@@ -27,6 +27,8 @@ export const authUser = () =>{
                 dispatch({type: "USER_AUTHENTICATE", payload: data.user})
                 cookie.add("token", data.token)
             })
-            .catch(() => console.log("Not good"))
+            .catch(() => {
+                dispatch({type: "USER_AUTHENTICATE_FAILED"})
+            })
     }
 }

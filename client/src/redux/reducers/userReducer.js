@@ -1,6 +1,7 @@
 const initialState = {
     user: {},
-    auth: false
+    auth: false,
+    headerLoading: true
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -8,9 +9,11 @@ export const userReducer = (state = initialState, action) => {
         case "USER_SIGNIN":
             return {...state, user: action.payload, auth: true}
         case "USER_LOGOUT":
-            return initialState
+            return {...initialState, headerLoading:false}
         case "USER_AUTHENTICATE":
-            return {...state, user: action.payload, auth: true}
+            return {...state, user: action.payload, auth: true, headerLoading: false}
+        case "USER_AUTHENTICATE_FAILED":
+            return {...state, headerLoading: false}
         default:
             return state
     }

@@ -12,18 +12,22 @@ import AddNews from "./pages/AddNews";
 import UserPage from "./pages/UserPage";
 import NewsDetails from "./pages/NewsDetails";
 import {history} from "./lib/history";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {authUser} from "./redux/actions/userActions";
+import Spinner from "./components/Spinner";
 
 
 const Routes = () => {
-
+    const {headerLoading} = useSelector(s => s.user)
     const dispatch = useDispatch()
 
     useEffect(() =>{
         dispatch(authUser())
     },[])
 
+    if (headerLoading){
+        return <Spinner />
+    }
     return (
         <Router history={history}>
             <Switch>
