@@ -1,6 +1,7 @@
 import axios from "axios"
 import cookie from "js-cookie";
 import {history} from "../../lib/history";
+import axiosV1 from "../../services/customAxios";
 
 
 export const signIn = (data) => {
@@ -17,4 +18,15 @@ export const signIn = (data) => {
 export const logout = () => {
     cookie.remove("token")
     return {type: "USER_LOGOUT"}
+}
+
+export const authUser = () =>{
+    return (dispatch) =>{
+        axiosV1.get("http://localhost:8000/api/v1/authenticate")
+            .then(({data}) => {
+                dispatch({type: "USER_AUTHENTICATE", payload: data.user})
+                cookie.add("token", data.token)
+            })
+            .catch(() => console.log("Not good"))
+    }
 }

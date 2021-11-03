@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Router, Route, Switch} from "react-router-dom";
 import App from "./App";
 import Signup from "./pages/Signup";
@@ -12,16 +12,17 @@ import AddNews from "./pages/AddNews";
 import UserPage from "./pages/UserPage";
 import NewsDetails from "./pages/NewsDetails";
 import {history} from "./lib/history";
+import {useDispatch} from "react-redux";
+import {authUser} from "./redux/actions/userActions";
 
 
 const Routes = () => {
-    //
-    // useEffect(() =>{
-    //     const checkToken = cookie.get("token")
-    //     axios.post("http://localhost:8000/api/v1/authenticate", {token: checkToken})
-    //         .then(({data}) => authenticate(data))
-    //         .catch(() => logout())
-    // },[])
+
+    const dispatch = useDispatch()
+
+    useEffect(() =>{
+        dispatch(authUser())
+    },[])
 
     return (
         <Router history={history}>

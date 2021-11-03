@@ -34,11 +34,12 @@ const signIn = (req, res) => {
 }
 
 const authenticate = (req, res) => {
+    const token = req.header("auth-token")
     try {
-        const userId = jwt.verify(req.body.token, process.env.SECRET_KEY)
+        const userId = jwt.verify(token, process.env.SECRET_KEY)
         Users.findOne({_id: userId._id}).exec(async (error, user) => {
             res.json({
-                token: req.body.token,
+                token,
                 user: {_id: user._id, name: user.name, email: user.email, role: user.role}
             })
         })
