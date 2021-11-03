@@ -11,7 +11,7 @@ export const getNews = () =>{
                 dispatch({type: "NEWS_SUCCESS", payload: data})
             })
             .catch((error) => {
-                dispatch({type: "NEWS_FAILED"})
+                dispatch({type: "NEWS_FAILED", payload: error})
             })
     }
 }
@@ -24,6 +24,9 @@ export const addNews = (newNews) => {
               dispatch({type: "ADD_NEWS", payload: data})
               toast.success("News successfully created!")
           })
-          .catch(() => toast.error("Error to created news!"))
+          .catch((error) => {
+              dispatch({type: "ADD_NEWS_FAILED", payload: error})
+              toast.error("Error to created news!")
+          })
   }
 }

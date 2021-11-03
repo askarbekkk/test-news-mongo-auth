@@ -7,11 +7,7 @@ import {addNews} from "../../redux/actions/newsAction";
 const AddNews = () => {
     const userId = useSelector(s => s.user.user._id)
     const dispatch = useDispatch()
-    const [values, setValues] = useState({
-        title: "",
-        description: ""
-    })
-
+    const [values, setValues] = useState({title: "", description: ""})
     const handleValue = (e) => {
       setValues({...values, [e.target.name]: e.target.value})
     }
@@ -20,10 +16,7 @@ const AddNews = () => {
         e.preventDefault()
         const newNews = {...values, author: userId}
         dispatch(addNews(newNews))
-        setValues({
-            title: "",
-            description: ""
-        })
+        setValues({title: "", description: ""})
     }
 
     return (
