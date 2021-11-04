@@ -11,3 +11,25 @@ export const addComment = (newComment) => {
             .catch(() => toast.error("Error to add comment"))
     }
 }
+
+export const like = (id) => {
+    return (dispatch) => {
+        axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
+            .then(({data}) => {
+                dispatch({type: "LIKE", payload: data})
+                toast.success("Like")
+            })
+            .catch(() => toast.error("Error to liked"))
+    }
+}
+
+export const disLike = (id) => {
+    return (dispatch) => {
+        axios.patch(`http://localhost:8000/api/v1/comments/dislike/${id}`)
+            .then(({data}) => {
+                dispatch({type: "DISLIKE", payload: data})
+                toast.success("Dislike")
+            })
+            .catch(() => toast.error("Error to disliked"))
+    }
+}

@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
 import {getOneNews} from "../../redux/actions/newsAction";
-import {addComment} from "../../redux/actions/commentsAction";
+import {addComment, disLike, like} from "../../redux/actions/commentsAction";
 
 const NewsDetails = () => {
     const {id} = useParams()
@@ -31,35 +31,37 @@ const NewsDetails = () => {
     }
 
     const handleLikes = (id) => {
-        axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
-            .then(({data}) => {
-                setNews({
-                    ...news, comments: news.comments.map(el => {
-                        if (el._id === id) {
-                            return data
-                        }
-                        return el
-                    })
-                })
-                toast.success("Comment liked")
-            })
-            .catch(() => toast.error("Error"))
+        dispatch(like(id))
+        // axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
+        //     .then(({data}) => {
+        //         setNews({
+        //             ...news, comments: news.comments.map(el => {
+        //                 if (el._id === id) {
+        //                     return data
+        //                 }
+        //                 return el
+        //             })
+        //         })
+        //         toast.success("Comment liked")
+        //     })
+        //     .catch(() => toast.error("Error"))
     }
 
     const handleDisLikes = (id) => {
-        axios.patch(`http://localhost:8000/api/v1/comments/dislike/${id}`)
-            .then(({data}) => {
-                setNews({
-                    ...news, comments: news.comments.map(el => {
-                        if (el._id === id) {
-                            return data
-                        }
-                        return el
-                    })
-                })
-                toast.success("Comment disliked")
-            })
-            .catch(() => toast.error("Error"))
+        dispatch(disLike(id))
+        // axios.patch(`http://localhost:8000/api/v1/comments/dislike/${id}`)
+        //     .then(({data}) => {
+        //         setNews({
+        //             ...news, comments: news.comments.map(el => {
+        //                 if (el._id === id) {
+        //                     return data
+        //                 }
+        //                 return el
+        //             })
+        //         })
+        //         toast.success("Comment disliked")
+        //     })
+        //     .catch(() => toast.error("Error"))
     }
 
     const deleteComment = (id) => {
