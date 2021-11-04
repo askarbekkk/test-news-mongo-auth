@@ -12,8 +12,9 @@ const NewsDetails = () => {
     const auth = useSelector(s => s.user.auth)
     const userId = useSelector(s => s.user.user._id)
     const oneNews = useSelector(s => s.news.newsDetails)
-    const [news, setNews] = useState({})
     const [comment, setComment] = useState({content: ""})
+    const [news, setNews] = useState({})
+
 
     useEffect(() => {
        dispatch(getOneNews(id))
