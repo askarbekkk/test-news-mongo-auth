@@ -8,6 +8,6 @@ export const addComment = (newComment) => {
                 dispatch({type: "ADD_COMMENT", payload: data})
                 toast.success("Comment added")
             })
-
+            .catch(() => toast.error("Error to add comment"))
     }
 }

@@ -28,13 +28,6 @@ const NewsDetails = () => {
         const newComment = {...comment, author: userId, news: id}
         dispatch(addComment(newComment))
         setComment({content: ""})
-        // axios.post("http://localhost:8000/api/v1/comments", {...comment, author: isAuth()?._id, news: id})
-        //     .then(({data}) => {
-        //         setNews({...news, comments: [...news.comments, data]})
-        //         toast.success("Comment added")
-        //     })
-        //     .catch(() => toast.error("Error"))
-        //     .finally(() => setComment({content: ""}))
     }
 
     const handleLikes = (id) => {
