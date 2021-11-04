@@ -12,6 +12,16 @@ export const addComment = (newComment) => {
     }
 }
 
+export const deleteOneComment = (id) =>{
+    return (dispatch) =>{
+        axios.delete(`http://localhost:8000/api/v1/comments/delete/${id}`)
+            .then(({data}) => {
+                dispatch({type: "DELETE_COMMENT", payload: data})
+                toast.success("Comment deleted")
+            })
+    }
+}
+
 export const like = (id) => {
     return (dispatch) => {
         axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)

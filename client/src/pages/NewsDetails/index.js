@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Layout from "../../components/Layout";
-import axios from "axios";
 import {useParams} from "react-router-dom";
-import {toast, ToastContainer} from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
 import {getOneNews} from "../../redux/actions/newsAction";
-import {addComment, disLike, like} from "../../redux/actions/commentsAction";
+import {addComment, deleteOneComment, disLike, like} from "../../redux/actions/commentsAction";
 
 const NewsDetails = () => {
     const {id} = useParams()
@@ -65,8 +64,7 @@ const NewsDetails = () => {
     }
 
     const deleteComment = (id) => {
-      axios.delete(`http://localhost:8000/api/v1/comments/delete/${id}`)
-          .then(({data}) => toast.success("Comment deleted"))
+      dispatch(deleteOneComment(id))
     }
 
     return (
