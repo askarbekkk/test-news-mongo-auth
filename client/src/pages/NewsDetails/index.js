@@ -3,26 +3,21 @@ import Layout from "../../components/Layout";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify";
-import {isAuth} from "../../lib/helpers";
-import Spinner from "../../components/Spinner";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getOneNews} from "../../redux/actions/newsAction";
+import {addComment} from "../../redux/actions/commentsAction";
 
 const NewsDetails = () => {
     const {id} = useParams()
+    const dispatch = useDispatch()
     const auth = useSelector(s => s.user.auth)
+    const userId = useSelector(s => s.user.user._id)
+    const oneNews = useSelector(s => s.news.newsDetails)
     const [news, setNews] = useState({})
-    const [isLoading, setIsLoading] = useState(true)
-    const [comment, setComment] = useState({
-        content: ""
-    })
+    const [comment, setComment] = useState({content: ""})
 
     useEffect(() => {
-        axios(`http://localhost:8000/api/v1/news/${id}`)
-            .then(({data}) => {
-                setNews(data)
-                setIsLoading(false)
-            })
-            .catch(() => console.log("Error"))
+       dispatch(getOneNews(id))
     }, [id])
 
     const handleChange = (e) => {
@@ -30,13 +25,16 @@ const NewsDetails = () => {
     }
 
     const pushComment = () => {
-        axios.post("http://localhost:8000/api/v1/comments", {...comment, author: isAuth()?._id, news: id})
-            .then(({data}) => {
-                setNews({...news, comments: [...news.comments, data]})
-                toast.success("Comment added")
-            })
-            .catch(() => toast.error("Error"))
-            .finally(() => setComment({content: ""}))
+        const newComment = {...comment, author: userId, news: id}
+        dispatch(addComment(newComment))
+        setComment({content: ""})
+        // axios.post("http://localhost:8000/api/v1/comments", {...comment, author: isAuth()?._id, news: id})
+        //     .then(({data}) => {
+        //         setNews({...news, comments: [...news.comments, data]})
+        //         toast.success("Comment added")
+        //     })
+        //     .catch(() => toast.error("Error"))
+        //     .finally(() => setComment({content: ""}))
     }
 
     const handleLikes = (id) => {
@@ -79,16 +77,13 @@ const NewsDetails = () => {
     return (
         <Layout>
             <ToastContainer/>
-            {
-                isLoading ? <Spinner /> :
-                    <>
                         <div className='flex'>
                             <img
                                 className="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-64 object-cover object-center mb-6 mr-10"
-                                src={news.image} alt=""/>
+                                src={oneNews?.image} alt=""/>
                             <div>
-                                <h1>{news.title}</h1>
-                                <p>{news.description}</p>
+                                <h1>{oneNews?.title}</h1>
+                                <p>{oneNews?.description}</p>
                             </div>
                         </div>
                         <div>
@@ -108,7 +103,7 @@ const NewsDetails = () => {
                                 }
                                 <div id="task-comments" className="pt-4">
                                     {
-                                        news?.comments?.map(item =>
+                                        oneNews?.comments?.map(item =>
                                             <div key={item._id}
                                                  className="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
                                                 <div className="flex flex-row justify-center mr-2">
@@ -137,8 +132,6 @@ const NewsDetails = () => {
                                 </div>
                             </section>
                         </div>
-                    </>
-            }
         </Layout>
     )
 }

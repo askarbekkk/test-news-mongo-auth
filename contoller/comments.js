@@ -16,8 +16,8 @@ const createComments = async (req, res) => {
 
 const getAllComments = async (req, res) => {
     try{
-        const news = await News.find({}).populate("comments")
-        res.json(news)
+        const comments = await Comments.find({})
+        res.json(comments)
     } catch (e) {
         res.status(400).json({message: "Error to get comment"})
     }

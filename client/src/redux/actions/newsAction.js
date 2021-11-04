@@ -16,6 +16,19 @@ export const getNews = () =>{
     }
 }
 
+export const getOneNews = (id) =>{
+    return (dispatch) =>{
+        dispatch({type: "NEWS_REQUEST"})
+        axios(`http://localhost:8000/api/v1/news/${id}`)
+            .then(({data}) => {
+                dispatch({type: "ONE_NEWS_SUCCESS", payload: data})
+            })
+            .catch((error) => {
+                dispatch({type: "NEWS_FAILED", payload: error})
+            })
+    }
+}
+
 export const addNews = (newNews) => {
   return (dispatch) =>{
       axios.post("http://localhost:8000/api/v1/news", newNews)
