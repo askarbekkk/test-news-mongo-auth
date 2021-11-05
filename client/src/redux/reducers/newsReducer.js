@@ -2,7 +2,6 @@ const initialState = {
     news: [],
     isLoading: false,
     error: "",
-    newsDetails:{}
 }
 
 export const newsReducer = (state = initialState, action) => {
@@ -11,8 +10,6 @@ export const newsReducer = (state = initialState, action) => {
             return {...state, isLoading: true}
         case "NEWS_SUCCESS":
             return {...state, news: action.payload, isLoading: false}
-        case "ONE_NEWS_SUCCESS":
-            return {...state, newsDetails: action.payload, isLoading: false}
         case "NEWS_FAILED":
             return {...state, error: action.payload, isLoading: false}
         case "ADD_NEWS":

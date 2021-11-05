@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import {useParams} from "react-router-dom";
 import { ToastContainer} from "react-toastify";
 import {useDispatch, useSelector} from "react-redux";
-import {getOneNews} from "../../redux/actions/newsAction";
+import {getOneNews} from "../../redux/actions/newsDetailsAction";
 import {addComment, deleteOneComment, disLike, like} from "../../redux/actions/commentsAction";
 
 const NewsDetails = () => {
@@ -11,7 +11,7 @@ const NewsDetails = () => {
     const dispatch = useDispatch()
     const auth = useSelector(s => s.user.auth)
     const userId = useSelector(s => s.user.user._id)
-    const oneNews = useSelector(s => s.news.newsDetails)
+    const {newsDetails, isLoading} = useSelector(s => s.newsDetails)
     const [comment, setComment] = useState({content: ""})
 
     useEffect(() => {
@@ -72,10 +72,10 @@ const NewsDetails = () => {
                         <div className='flex'>
                             <img
                                 className="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72  rounded w-64 object-cover object-center mb-6 mr-10"
-                                src={oneNews?.image} alt=""/>
+                                src={newsDetails?.image} alt=""/>
                             <div>
-                                <h1>{oneNews?.title}</h1>
-                                <p>{oneNews?.description}</p>
+                                <h1>{newsDetails?.title}</h1>
+                                <p>{newsDetails?.description}</p>
                             </div>
                         </div>
                         <div>
@@ -95,7 +95,7 @@ const NewsDetails = () => {
                                 }
                                 <div id="task-comments" className="pt-4">
                                     {
-                                        oneNews?.comments?.map(item =>
+                                        newsDetails?.comments?.map(item =>
                                             <div key={item._id}
                                                  className="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
                                                 <div className="flex flex-row justify-center mr-2">
