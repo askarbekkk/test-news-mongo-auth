@@ -1,6 +1,6 @@
 const initialState = {
     newsDetails:{},
-    isLoading: false,
+    isLoading: true,
     error: ""
 }
 
@@ -12,6 +12,8 @@ export const newsDetailsReducer = (state = initialState, action) => {
             return {...state, newsDetails: action.payload, isLoading: false}
         case "NEWS_DETAILS_FAILED":
             return {...state, error: action.payload, isLoading: false}
+        case "ADD_COMMENT_SUCCESS":
+            return {...state, newsDetails: {...state.newsDetails, comments:[...state.newsDetails.comments, action.payload]}}
         default:
             return state
     }

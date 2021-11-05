@@ -28,6 +28,10 @@ const NewsDetails = () => {
         setComment({content: ""})
     }
 
+    const deleteComment = (id) => {
+        dispatch(deleteOneComment(id))
+    }
+
     const handleLikes = (id) => {
         dispatch(like(id))
         // axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
@@ -60,10 +64,6 @@ const NewsDetails = () => {
         //         toast.success("Comment disliked")
         //     })
         //     .catch(() => toast.error("Error"))
-    }
-
-    const deleteComment = (id) => {
-      dispatch(deleteOneComment(id))
     }
 
     return (

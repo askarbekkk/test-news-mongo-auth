@@ -1,6 +1,6 @@
 const initialState = {
     news: [],
-    isLoading: false,
+    isLoading: true,
     error: "",
 }
 
