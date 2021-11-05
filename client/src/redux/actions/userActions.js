@@ -25,7 +25,7 @@ export const authUser = () =>{
         axiosV1.get("http://localhost:8000/api/v1/authenticate")
             .then(({data}) => {
                 dispatch({type: "USER_AUTHENTICATE", payload: data.user})
-                cookie.add("token", data.token)
+                cookie.set("token", data.token)
             })
             .catch(() => {
                 dispatch({type: "USER_AUTHENTICATE_FAILED"})
