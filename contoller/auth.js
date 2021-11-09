@@ -64,5 +64,9 @@ const getUserInfo = async (req, res) =>{
     }
 }
 
+const googleLogin = () => {
 
-module.exports = {signUp, signIn, authenticate, getUserInfo}
+}
+
+
+module.exports = {signUp, signIn, authenticate, getUserInfo, googleLogin}
