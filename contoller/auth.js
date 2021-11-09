@@ -78,7 +78,20 @@ const googleLogin = (req, res) => {
                 Users.findOne({email}).exec((err, user) =>{
                     if (user){
                         const token = jwt.sign({_id: user._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
-
+                        const {_id, email, name, role} = user
+                        return res.json({
+                            token,
+                            user: {_id, email, name, role}
+                        })
+                    } else {
+                        let password = email + process.env.SECRET_KEY
+                        user = new Users({name, email, password})
+                        user.save((err, data) => {
+                            if (err) return res.status(400).json({error: "User signup with google failed"})
+                            const token = jwt.sign({_id: data._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
+                            const {_id, email, name, role} = data
+                            return res.json({token, user:{_id, email, name, role}})
+                        })
                     }
                 })
             }
