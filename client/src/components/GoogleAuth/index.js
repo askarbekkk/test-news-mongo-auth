@@ -1,15 +1,18 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
+import axios from "axios";
 
 
 const GoogleAuth = () => {
     const responseGoogle = (response) => {
-        console.log(response);
+        axios.post("http://localhost:8000/api/v1/google-login", {idToken: response.tokenId})
+            .then(response => console.log("GOOGLE SIGNIN SUCCESS", response))
+            .catch(error => console.log("GOOGLE SIGNIN ERROR", error.response))
     }
     return (
         <div>
             <GoogleLogin
-                clientId={process.env.GOOGLE_CLIENT_ID}
+                clientId="135180937964-2fp68t0f130c0o737gfnoiqpcsqs38l8.apps.googleusercontent.com"
                 buttonText="Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}

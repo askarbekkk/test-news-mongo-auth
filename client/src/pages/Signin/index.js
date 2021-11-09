@@ -4,6 +4,7 @@ import { ToastContainer} from "react-toastify";
 import Layout from "../../components/Layout";
 import {useDispatch, useSelector} from "react-redux";
 import {signIn} from "../../redux/actions/userActions";
+import GoogleAuth from "../../components/GoogleAuth";
 
 
 
@@ -95,12 +96,7 @@ const Signin = () => {
 
                                         Facebook
                                     </button>
-
-                                    <button type='button'
-                                        className="bg-red-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-
-                                        Google
-                                    </button>
+                                    <GoogleAuth />
                                 </div>
 
                                 <div className="mt-7">
