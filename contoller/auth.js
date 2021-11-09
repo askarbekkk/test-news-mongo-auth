@@ -1,6 +1,8 @@
 const Users = require("../models/authModel")
 const jwt = require("jsonwebtoken")
 const mongoose = require("mongoose")
+const {OAuth2Client} = require("google-auth-library");
+const {response} = require("express");
 
 const signUp = (req, res) => {
     const {name, email, password} = req.body
@@ -64,8 +66,23 @@ const getUserInfo = async (req, res) =>{
     }
 }
 
-const googleLogin = () => {
 
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+const googleLogin = (req, res) => {
+    const {idToken} = req.body
+
+    client.verifyIdToken({idToken, audience: process.env.GOOGLE_CLIENT_ID})
+        .then(response => {
+            const {email_verified, name, email} = response.payload
+            if (email_verified){
+                Users.findOne({email}).exec((err, user) =>{
+                    if (user){
+                        const token = jwt.sign({_id: user._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
+
+                    }
+                })
+            }
+        })
 }
 
 
