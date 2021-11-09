@@ -14,6 +14,8 @@ export const newsDetailsReducer = (state = initialState, action) => {
             return {...state, error: action.payload, isLoading: false}
         case "ADD_COMMENT_SUCCESS":
             return {...state, newsDetails: {...state.newsDetails, comments:[...state.newsDetails.comments, action.payload]}}
+        case"LIKE":
+            return {...state, newsDetails: {...state.newsDetails, comments: [...state.newsDetails.comments]}}
         default:
             return state
     }
