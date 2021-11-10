@@ -6,6 +6,7 @@ const chalk = require("chalk")
 require("dotenv").config()
 const authRouter = require("./routes/auth")
 const newsRouter = require("./routes/news")
+const stripeRouter = require("./routes/stripe")
 const commentsRouter = require("./routes/comments")
 const path = require("path");
 
@@ -24,6 +25,7 @@ mongoose.connect(process.env.MONGO_URL)
 server.use("/api/v1", authRouter)
 server.use("/api/v1/news", newsRouter)
 server.use("/api/v1/comments", commentsRouter)
+server.use("/api/v1", stripeRouter)
 
 server.get("*", (req, res) => {
     res.sendFile(path.join(__dirname + "client/build/index.html"))
