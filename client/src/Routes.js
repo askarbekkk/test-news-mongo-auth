@@ -1,20 +1,21 @@
 import React, {useEffect, Suspense, lazy} from 'react';
 import {Router, Route, Switch} from "react-router-dom";
 import App from "./App";
-import Signup from "./pages/Signup";
-import Signin from "./pages/Signin";
-import Private from "./pages/Private";
-import Admin from "./pages/Admin";
 import PrivateRoute from "./components/PrivatRoute";
 import AdminRoute from "./components/AdminRoute";
-import News from "./pages/News";
-import AddNews from "./pages/AddNews";
-import UserPage from "./pages/UserPage";
-import NewsDetails from "./pages/NewsDetails";
+import Spinner from "./components/Spinner";
 import {history} from "./lib/history";
 import {useDispatch, useSelector} from "react-redux";
 import {authUser} from "./redux/actions/userActions";
-import Spinner from "./components/Spinner";
+
+const Signup = lazy(() => import("./pages/Signup"))
+const Signin = lazy(() => import("./pages/Signin"))
+const News = lazy(() => import("./pages/News"))
+const AddNews = lazy(() => import("./pages/AddNews"))
+const UserPage = lazy(() => import("./pages/UserPage"))
+const NewsDetails = lazy(() => import("./pages/NewsDetails"))
+const Private = lazy(() => import("./pages/Private"))
+const Admin = lazy(() => import("./pages/Admin"))
 
 
 const Routes = () => {
