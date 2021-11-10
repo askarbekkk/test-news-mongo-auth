@@ -24,6 +24,8 @@ const Header = () => {
                         className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">Private</Link>
                     <Link to='/news'
                           className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">News</Link>
+                    <Link to='/membership'
+                          className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">Membership</Link>
                     {
                         user.role === "admin" && auth &&
                         <Link to='/admin' className="mr-5  cursor-pointer border-b border-transparent hover:border-indigo-600">Admin</Link>

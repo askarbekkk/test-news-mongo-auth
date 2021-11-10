@@ -16,6 +16,7 @@ const UserPage = lazy(() => import("./pages/UserPage"))
 const NewsDetails = lazy(() => import("./pages/NewsDetails"))
 const Private = lazy(() => import("./pages/Private"))
 const Admin = lazy(() => import("./pages/Admin"))
+const Membership = lazy(() => import("./pages/Membership"))
 
 
 const Routes = () => {
@@ -39,6 +40,7 @@ const Routes = () => {
                    <Route exact path='/news' component={News}/>
                    <Route exact path='/news_details/:id' component={NewsDetails}/>
                    <Route exact path='/user/:id' component={UserPage}/>
+                   <Route exact path='/membership' component={Membership}/>
                    <PrivateRoute exact path='/add_news' component={AddNews}/>
                    <PrivateRoute exact path='/private' component={Private}/>
                    <AdminRoute exact path='/admin' component={Admin}/>
