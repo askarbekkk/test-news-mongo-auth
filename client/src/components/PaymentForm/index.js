@@ -29,9 +29,10 @@ const PaymentForm = () => {
     const handleSubmit = async (e) => {
       e.preventDefault()
         const {error, paymentMethod} = await stripe.createPaymentMethod({
-            type: "card",
+            type: 'card',
             card: elements.getElement(CardElement)
         })
+
         if (!error){
             try {
                 const {id} = paymentMethod

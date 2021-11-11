@@ -1,5 +1,7 @@
 const express = require("express")
-const {payment} = require("../contoller/stripe");
 const router = express.Router()
+const {payment} = require("../contoller/stripe");
 
 router.post("/payment", payment)
+
+module.exports = router
