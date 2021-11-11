@@ -85,10 +85,7 @@ const googleLogin = (req, res) => {
                     } else {
                         let password = email + process.env.SECRET_KEY
                         let newUser = new Users({_id: new mongoose.Types.ObjectId(),name, email, password})
-                        console.log(newUser)
                         newUser.save((err, data) => {
-                            console.log('err',err)
-                            console.log("data", data)
                             if (err) return res.status(400).json({error: "User signin with google failed"})
                             const token = jwt.sign({_id: data._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
                             const {_id, email, name, role} = data
