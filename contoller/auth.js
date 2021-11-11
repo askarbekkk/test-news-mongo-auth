@@ -73,10 +73,7 @@ const googleLogin = (req, res) => {
         .then(response => {
             const {email_verified, name, email} = response.payload
             if (email_verified){
-                console.log("email_verified", email_verified)
                 Users.findOne({email}).exec((err, user) =>{
-                    console.log(email)
-                    console.log("user", user)
                     if (user){
                         const token = jwt.sign({_id: user._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
                         const {_id, email, name, role} = user
@@ -86,8 +83,11 @@ const googleLogin = (req, res) => {
                         })
                     } else {
                         let password = email + process.env.SECRET_KEY
-                        user = new Users({name, email, password})
-                        user.save((err, data) => {
+                        let newUser = new Users({name, email, password})
+                        console.log(newUser)
+                        newUser.save((err, data) => {
+                            console.log(err)
+                            console.log(data)
                             if (err) return res.status(400).json({error: "User signin with google failed"})
                             const token = jwt.sign({_id: data._id}, process.env.SECRET_KEY, {expiresIn: "2d"})
                             const {_id, email, name, role} = data
