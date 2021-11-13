@@ -23,11 +23,13 @@ export const deleteOneComment = (id) =>{
 }
 
 export const like = (id) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
             .then(({data}) => {
+
                 dispatch({type: "LIKE", payload: data})
                 toast.success("Like")
+                console.log(getState().user)
             })
             .catch(() => toast.error("Error to liked"))
     }
