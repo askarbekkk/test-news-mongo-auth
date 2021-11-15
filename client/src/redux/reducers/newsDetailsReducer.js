@@ -16,7 +16,9 @@ export const newsDetailsReducer = (state = initialState, action) => {
         case "ADD_COMMENT_SUCCESS":
             return {...state, newsDetails: {...state.newsDetails, comments:[...state.newsDetails.comments, action.payload]}}
         case "DELETE_COMMENT":
-            return {...state, comments: [...state.comments, action.payload]}
+            return {...state, newsDetails: {...state.newsDetails, comments: state.newsDetails.comments.filter(el => {
+                    return el._id !== action.payload._id
+                    })}}
         case"LIKE":
             return {...state, newsDetails: {...state.newsDetails, comments: state.newsDetails.comments.map(el =>
                     el._id === action.payload._id ? action.payload : el

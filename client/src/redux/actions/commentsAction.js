@@ -13,7 +13,7 @@ export const addComment = (newComment) => {
 }
 
 export const deleteOneComment = (id) =>{
-    return (dispatch) =>{
+    return (dispatch) => {
         axios.delete(`http://localhost:8000/api/v1/comments/delete/${id}`)
             .then(({data}) => {
                 dispatch({type: "DELETE_COMMENT", payload: data})
@@ -26,10 +26,9 @@ export const like = (id) => {
     return (dispatch, getState) => {
         axios.patch(`http://localhost:8000/api/v1/comments/like/${id}`)
             .then(({data}) => {
-
+                console.log(getState())
                 dispatch({type: "LIKE", payload: data})
                 toast.success("Like")
-                console.log(getState().user)
             })
             .catch(() => toast.error("Error to liked"))
     }
