@@ -23,19 +23,6 @@ const Signin = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(signIn(values))
-        // axios({
-        //     method: "POST",
-        //     url: "http://localhost:8000/api/v1/signin",
-        //     data: values
-        // }).then(({data}) => {
-        //     setValues({email:"", password:""})
-        //     toast.success(`Hello ${data?.user.name}`)
-        //     authenticate(data)
-        //     isAuth() && isAuth().role === "admin" ? history.push("/admin") : history.push("/private")
-        // }).catch((error) => {
-        //     setValues({email:"", password:""})
-        //     toast.error(error?.response?.data.error)
-        // })
     }
 
     return (
